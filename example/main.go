@@ -17,7 +17,6 @@ import (
 	"github.com/astenmies/graphql-auth/authUtils"
 	"github.com/rs/cors"
 
-	"github.com/astenmies/lychee/server/model"
 	"github.com/gorilla/sessions"
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/spf13/viper"
@@ -118,7 +117,7 @@ func main() {
 }
 
 //// Users ////
-var users = []model.User{
+var users = []User{
 	{
 		ID:       "1",
 		Username: "bob",
@@ -182,7 +181,7 @@ var (
 // User :
 // - Resolves User query
 func (r *Resolver) User(ctx context.Context, args *struct {
-	Input *model.User
+	Input *User
 }) string {
 	return "Username"
 }
@@ -190,7 +189,7 @@ func (r *Resolver) User(ctx context.Context, args *struct {
 // triggerOauth :
 // - Resolves triggerOauth mutation
 func (r *Resolver) TriggerOauth(ctx context.Context, args *struct {
-	Input *model.UserLoginInput
+	Input *UserLoginInput
 }) string {
 	return "newToken for " + args.Input.Username
 }
@@ -212,8 +211,8 @@ type UserInput struct {
 	Username string
 }
 
-// UserLoginInputhandler struct for userLogin mutation
-type UserLoginInputhandler struct {
+// UserLoginInput struct for userLogin mutation
+type UserLoginInput struct {
 	Username string
 	Password string
 }

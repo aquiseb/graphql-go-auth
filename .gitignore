@@ -18,4 +18,4 @@
 *.out
 
 # Ignore your secret config
-example/global.json
+example/_config/global.json
