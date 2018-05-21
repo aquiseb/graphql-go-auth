@@ -2,7 +2,7 @@
 
 Enables you to easily handle authentication with [graph-gophers/graphql-go](https://github.com/graph-gophers/graphql-go). This project currently provides Oauth2 authentication with google.
 
-# Example use
+## Example use
 
 ```
 # 1- go to example
