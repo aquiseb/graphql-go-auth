@@ -1,0 +1,17 @@
+{
+    "gqlauth": {
+        "server": {
+            "port": 8080
+        },
+        "cookie": {
+            "//": "The secret below is 'graph-gophers' as SHA256 key",
+            "secret": "20257E6921D7F50EC37CADD12FD1017FBA114FBF19C32F264FB6050B7624C4F2"
+        },
+        "oauth": {
+            "google": {
+                "id": "abcdefghijklmnopqrstuvwxyz.apps.googleusercontent.com",
+                "secret": "abcdefg_z"
+            }
+        }
+    }
+}
