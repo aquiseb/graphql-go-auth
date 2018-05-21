@@ -14,5 +14,3 @@ cd example
 # 3- edit example/_config/global.json
 # 4- contributions are welcome!
 ```
-
-#
