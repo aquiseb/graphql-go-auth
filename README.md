@@ -12,5 +12,13 @@ cd example
 ./start.sh
 
 # 3- edit example/_config/global.json
-# 4- contributions are welcome!
+# 4- visit localhost:8080
+```
+Then you can enter this in GraphiQL. Make sure your google client id and key are correct in global.json.
+```graphql
+mutation {
+  triggerOauth(input: {
+    username: "bob", password: "123"
+  })
+}
 ```
