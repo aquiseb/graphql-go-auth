@@ -73,7 +73,7 @@ func isTrigger(config *authUtils.Config, query string) bool {
 		// Does our query contain mutation?
 		if isMutation {
 			mutationName = resultSlice[1]
-			if mutationName == "triggerOauth" {
+			if mutationName == config.TriggerMutation {
 				return true
 			}
 		}
