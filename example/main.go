@@ -70,7 +70,11 @@ func querySuccess(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		ctx := req.Context()
 		authURL := ctx.Value(authCommon.AuthURLKey).(string)
+
+		// Don't use this in production
+		// instead, use http.Redirect and define CORS.
 		open.Run(authURL)
+
 		// http.Redirect(w, req, authURL, http.StatusFound)
 		next.ServeHTTP(w, req.WithContext(ctx))
 	})
