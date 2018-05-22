@@ -37,17 +37,6 @@ type Handler struct {
 
 var graphqlSchema *graphql.Schema
 
-func formatJSON(data []byte) ([]byte, error) {
-	var v interface{}
-	if err := json.Unmarshal(data, &v); err != nil {
-		return nil, err
-	}
-	formatted, err := json.Marshal(v)
-	if err != nil {
-		return nil, err
-	}
-	return formatted, nil
-}
 func contains(arr []string, str string) bool {
 	for _, a := range arr {
 		if a == str {
