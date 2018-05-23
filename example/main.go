@@ -30,7 +30,7 @@ type Config struct {
 
 var graphqlSchema *graphql.Schema
 
-var customCookieConfig = &authUtils.Config{
+var customConfig = &authUtils.Config{
 	Name:            "graphql-auth",
 	Path:            "/",
 	MaxAge:          60, // 60 seconds
@@ -82,8 +82,6 @@ func querySuccess(next http.Handler) http.Handler {
 
 func main() {
 
-	stateConfig := customCookieConfig
-
 	// Define our api keys
 	secretConfig := &Config{
 		ClientID:     viper.GetString("gqlauth.oauth.google.id"),
@@ -101,13 +99,13 @@ func main() {
 	h := &relay.Handler{Schema: graphqlSchema}
 	handleSuccess := querySuccess(h)
 	handleLogin := authCommon.LoginHandler(oauth2Config, handleSuccess, nil)
-	handleState := authCommon.StateCookieHandler(stateConfig, handleLogin, graphqlSchema, h)
+	handleState := authCommon.StateCookieHandler(customConfig, handleLogin, graphqlSchema, h)
 	http.Handle("/graphql", cors.Default().Handler(handleState))
 
 	handleSuccess = callbackSuccess()
 	handleGoogle := authGoogle.Handler(oauth2Config, handleSuccess, nil)
 	handleCallback := authCommon.CallbackHandler(oauth2Config, handleGoogle, nil)
-	handleState = authCommon.StateCookieHandler(stateConfig, handleCallback, graphqlSchema, nil)
+	handleState = authCommon.StateCookieHandler(customConfig, handleCallback, graphqlSchema, nil)
 	http.Handle("/google/callback", handleState)
 
 	// Write a GraphiQL page to /
