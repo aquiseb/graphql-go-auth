@@ -82,15 +82,9 @@ func querySuccess(next http.Handler) http.Handler {
 
 func main() {
 
-	// Define our api keys
-	secretConfig := &Config{
+	oauth2Config := &oauth2.Config{
 		ClientID:     viper.GetString("gqlauth.oauth.google.id"),
 		ClientSecret: viper.GetString("gqlauth.oauth.google.secret"),
-	}
-
-	oauth2Config := &oauth2.Config{
-		ClientID:     secretConfig.ClientID,
-		ClientSecret: secretConfig.ClientSecret,
 		RedirectURL:  "http://localhost:8080/google/callback",
 		Endpoint:     googleOAuth2.Endpoint,
 		Scopes:       []string{"profile", "email"},
@@ -99,13 +93,13 @@ func main() {
 	h := &relay.Handler{Schema: graphqlSchema}
 	handleSuccess := querySuccess(h)
 	handleLogin := authCommon.LoginHandler(oauth2Config, handleSuccess, nil)
-	handleState := authCommon.StateCookieHandler(customConfig, handleLogin, graphqlSchema, h)
+	handleState := authCommon.StateCookieHandler(customConfig, handleLogin, h)
 	http.Handle("/graphql", cors.Default().Handler(handleState))
 
 	handleSuccess = callbackSuccess()
 	handleGoogle := authGoogle.Handler(oauth2Config, handleSuccess, nil)
 	handleCallback := authCommon.CallbackHandler(oauth2Config, handleGoogle, nil)
-	handleState = authCommon.StateCookieHandler(customConfig, handleCallback, graphqlSchema, nil)
+	handleState = authCommon.StateCookieHandler(customConfig, handleCallback, nil)
 	http.Handle("/google/callback", handleState)
 
 	// Write a GraphiQL page to /

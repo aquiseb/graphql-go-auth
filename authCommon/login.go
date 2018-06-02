@@ -35,8 +35,6 @@ type Handler struct {
 	Schema *graphql.Schema
 }
 
-var graphqlSchema *graphql.Schema
-
 func contains(arr []string, str string) bool {
 	for _, a := range arr {
 		if a == str {
@@ -72,9 +70,13 @@ func isTrigger(config *authUtils.Config, query string) bool {
 
 // StateCookieHandler :
 // - Oauth2 requires a state
-// - If state cookie exists, read its value and add to ctxvar
+// - If state cookie exists, read its value and add to ctx var
 // - Otherwise generate a random value and add it to ctx
-func StateCookieHandler(config *authUtils.Config, success http.Handler, graphqlSchema *graphql.Schema, normalQuery http.Handler) http.Handler {
+// - Takes four args:
+//		1- your auth config
+//		2- success is the function that is called after successful state management
+//		3- normalQuery bypasses the success function if it should not get called (means it's not the mutation that triggers oauth)
+func StateCookieHandler(config *authUtils.Config, success http.Handler, normalQuery http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, req *http.Request) {
 		ctx := req.Context()
 		cookie, err := req.Cookie(config.Name)
