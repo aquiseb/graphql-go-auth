@@ -27,3 +27,7 @@ mutation {
 }
 ```
 NB: You may trigger the mutation without any input if you prefer.
+
+## Todo
+- [*] Return the auth URL when triggering the mutation (done 2018/06/03)
+- [ ] The callback page should be able to respond with some GraphQL data (like isLoggedin for instance)
