@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/graph-gophers/graphql-go/relay"
 	"github.com/skratchdot/open-golang/open"
@@ -107,9 +108,11 @@ func main() {
 		w.Write(page)
 	}))
 
+	port := viper.GetInt("gqlauth.server.port")
+	goPort := ":" + strconv.Itoa(port) // Needs ":1234" as port
 	// Start an http server
-	log.Println("Let's go")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Ready on http://localhost" + goPort)
+	log.Fatal(http.ListenAndServe(goPort, nil))
 }
 
 //// Users ////
