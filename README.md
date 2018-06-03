@@ -30,4 +30,6 @@ NB: You may trigger the mutation without any input if you prefer.
 
 ## Todo
 - [x] Return the auth URL when triggering the mutation (done 2018/06/03)
-- [ ] The callback page should be able to respond with some GraphQL data (like isLoggedin for instance)
+- [ ] Better structure validation / errors on login request.
+- [ ] The callback page should be able to respond with some GraphQL data (like isLoggedin for instance).
+- [ ] Add Facebook authentication
