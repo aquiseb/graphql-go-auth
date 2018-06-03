@@ -18,6 +18,7 @@ go get ./...
 # 5- visit localhost:8080
 ```
 Then you can enter this in GraphiQL. Make sure your google client id and key are correct in global.json.
+The mutation will return the URL to which you should redirect. But that URL can also be passed in the Header
 ```graphql
 mutation {
   triggerOauth(input: {

@@ -28,7 +28,7 @@ func AuthURLToContext(ctx context.Context, authURL string) context.Context {
 	return context.WithValue(ctx, AuthURLKey, authURL)
 }
 
-// TokenToContext adds authURL to ctx
+// TokenToContext adds token to ctx
 func TokenToContext(ctx context.Context, token *oauth2.Token) context.Context {
 	return context.WithValue(ctx, TokenKey, token)
 }

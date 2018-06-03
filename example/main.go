@@ -185,7 +185,7 @@ func (r *Resolver) User(ctx context.Context, args *struct {
 func (r *Resolver) TriggerOauth(ctx context.Context, args *struct {
 	Input *UserLoginInput
 }) string {
-	return "newToken for " + args.Input.Username
+	return ctx.Value(authCommon.AuthURLKey).(string)
 }
 
 //// Graphql Types ////
