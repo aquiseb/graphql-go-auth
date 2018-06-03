@@ -10,7 +10,7 @@ import (
 	"net/http"
 	"strings"
 
-	authUtils "github.com/astenmies/graphql-auth/authUtils"
+	authUtils "github.com/astenmies/graphql-go-auth/authUtils"
 	graphql "github.com/graph-gophers/graphql-go"
 	"golang.org/x/oauth2"
 )

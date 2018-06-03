@@ -12,9 +12,9 @@ import (
 
 	googleOAuth2 "golang.org/x/oauth2/google"
 
-	authCommon "github.com/astenmies/graphql-auth/authCommon"
-	"github.com/astenmies/graphql-auth/authGoogle"
-	"github.com/astenmies/graphql-auth/authUtils"
+	authCommon "github.com/astenmies/graphql-go-auth/authCommon"
+	"github.com/astenmies/graphql-go-auth/authGoogle"
+	"github.com/astenmies/graphql-go-auth/authUtils"
 	"github.com/rs/cors"
 
 	"github.com/gorilla/sessions"
@@ -31,7 +31,7 @@ type Config struct {
 var graphqlSchema *graphql.Schema
 
 var customConfig = &authUtils.Config{
-	Name:            "graphql-auth",
+	Name:            "graphql-go-auth",
 	Path:            "/",
 	MaxAge:          60, // 60 seconds
 	HTTPOnly:        true,
@@ -117,7 +117,6 @@ var users = []User{
 	{
 		ID:       "1",
 		Username: "bob",
-		Password: "123",
 	},
 }
 
@@ -145,7 +144,6 @@ var Schema = `
 	}
     input UserLoginInput {
 		username: String!
-		password: String!
 	}
     `
 
@@ -199,7 +197,6 @@ type Resolver struct{}
 type User struct {
 	ID       string
 	Username string
-	Password string
 }
 
 // UserInput struct for query
@@ -208,9 +205,11 @@ type UserInput struct {
 }
 
 // UserLoginInput struct for userLogin mutation
+// while an input is not necessary for the trigger mutation
+// it can be convenient to save an oauth token in DB, associated with a username
+// but you may also enable to define the username later on (on a profile page for instance)
 type UserLoginInput struct {
 	Username string
-	Password string
 }
 
 //// GraphiQL ////

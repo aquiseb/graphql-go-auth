@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/astenmies/graphql-auth/authUtils"
+	"github.com/astenmies/graphql-go-auth/authUtils"
 	"github.com/stretchr/testify/assert"
 )
 

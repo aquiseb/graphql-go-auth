@@ -21,7 +21,8 @@ Then you can enter this in GraphiQL. Make sure your google client id and key are
 ```graphql
 mutation {
   triggerOauth(input: {
-    username: "bob", password: "123"
+    username: "bob"
   })
 }
 ```
+NB: You may trigger the mutation without any input if you prefer.

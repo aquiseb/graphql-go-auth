@@ -29,7 +29,7 @@ type Config struct {
 // DefaultAuthConfig :
 // - Configures short-lived temporary http.Cookie creation
 var DefaultAuthConfig = &Config{
-	Name:            "graphql-auth-temp-cookie",
+	Name:            "graphql-go-auth-temp-cookie",
 	Path:            "/",
 	MaxAge:          60, // 60 seconds
 	HTTPOnly:        true,
@@ -42,7 +42,7 @@ var DefaultAuthConfig = &Config{
 // - Does NOT require cookies be sent over HTTPS!
 // - Use this config for development only
 var DebuggingAuthConfig = &Config{
-	Name:            "graphql-auth-temp-debug-cookie",
+	Name:            "graphql-go-auth-temp-debug-cookie",
 	Path:            "/",
 	MaxAge:          60, // 60 seconds
 	HTTPOnly:        true,

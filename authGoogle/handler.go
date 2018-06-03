@@ -4,8 +4,8 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/astenmies/graphql-auth/authCommon"
-	"github.com/astenmies/graphql-auth/authUtils"
+	"github.com/astenmies/graphql-go-auth/authCommon"
+	"github.com/astenmies/graphql-go-auth/authUtils"
 	"golang.org/x/oauth2"
 	google "google.golang.org/api/oauth2/v2"
 )
